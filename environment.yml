@@ -1,0 +1,16 @@
+name: iot_backend
+channels:
+
+ - bioconda
+
+ - conda-forge
+
+ - defaults
+
+dependencies:
+
+ - pymysql
+ - pandas
+ - numpy
+ - pip:
+    - pynput
