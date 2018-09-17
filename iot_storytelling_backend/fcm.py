@@ -9,4 +9,4 @@ def push_event(msg, event="news"):
     push_service = FCMNotification(api_key=API_KEY)
 
     result = push_service.notify_topic_subscribers(topic_name=event, message_body=msg)
-    print(result)
+    print("FCM %s" % result)
