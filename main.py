@@ -4,7 +4,8 @@ import fcm
 
 HOST = ''  # Symbolic name, meaning all available interfaces
 PORT = 8888  # Arbitrary non-privileged port
-
+# hello im here
+# new comment
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
