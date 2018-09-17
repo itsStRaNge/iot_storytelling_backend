@@ -5,7 +5,14 @@ from iot_storytelling_backend import fcm
 
 HOST = ''  # Symbolic name, meaning all available interfaces
 PORT = 8888  # Arbitrary non-privileged port
+CHUNK_SIZE = 1024
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+
+def ping_host_ip():
+    ip_str = str(socket.gethostbyname(socket.gethostname()))
+    fcm.push_event(ip_str, event="host", silent=True)
 
 
 def handle_connection(conn):
@@ -13,9 +20,11 @@ def handle_connection(conn):
     # Receiving from client
     data = b''
     while True:
-        chunk = conn.recv(1024)
+        chunk = conn.recv(CHUNK_SIZE)
         if chunk:
             data += chunk
+            if len(chunk) < CHUNK_SIZE:
+                break
         else:
             break
 
@@ -27,6 +36,9 @@ def handle_connection(conn):
 
 
 def start():
+    # notify sensor app that server is running
+    ping_host_ip()
+
     # Bind socket to local host and port
     try:
         s.bind((HOST, PORT))
