@@ -12,7 +12,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 def ping_host_ip():
     ip_str = str(socket.gethostbyname(socket.gethostname()))
-    fcm.push_event(ip_str, event="host", silent=True)
+    fcm.push_event(ip_str, event="host")
 
 
 def handle_connection(conn):
