@@ -1,6 +1,5 @@
 import socket
 import sys
-
 from iot_storytelling_backend import fcm
 
 HOST = ''  # Symbolic name, meaning all available interfaces
@@ -17,7 +16,7 @@ def ping_host_ip():
 
 def handle_connection(conn):
 
-    # Receiving from client
+    # Receiving data from client
     data = b''
     while True:
         chunk = conn.recv(CHUNK_SIZE)
@@ -28,11 +27,23 @@ def handle_connection(conn):
         else:
             break
 
-    # TODO: Some Processing of the data
+    # TODO: Do Processing of the data
     print('SERVER %s' % data)
 
     # Send action to other devices
     fcm.push_event(str(data))
+
+
+def server_loop():
+    while True:
+        try:
+            # wait to accept a connection - blocking call
+            conn, addr = s.accept()
+            print('SERVER Connected with ' + addr[0] + ':' + str(addr[1]))
+            handle_connection(conn)
+        except Exception as e:
+            print(e)
+            break
 
 
 def start():
@@ -50,17 +61,10 @@ def start():
     s.listen()
     print('SERVER Socket now listening')
 
-    # now keep talking with the client
-    while True:
-        try:
-            # wait to accept a connection - blocking call
-            conn, addr = s.accept()
-            print('SERVER Connected with ' + addr[0] + ':' + str(addr[1]))
-            handle_connection(conn)
-        except Exception as e:
-            print(e)
-            break
+    # enter the server loop
+    server_loop()
 
+    # should never be reached
     s.close()
 
 
