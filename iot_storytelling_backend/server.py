@@ -32,7 +32,7 @@ def handle_connection(conn):
     print('SERVER %s' % data)
 
     # Send action to other devices
-    # fcm.push_event(str(data))
+    fcm.push_event(str(data))
 
 
 def start():
