@@ -3,7 +3,7 @@ import json
 
 JSON_FILE = 'test_data.json'
 
-TCP_IP = socket.gethostbyname(socket.gethostname())
+TCP_IP = 'localhost' # socket.gethostbyname(socket.gethostname())
 TCP_PORT = 8888
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
