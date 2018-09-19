@@ -1,7 +1,10 @@
 import socket
 import sys
+import threading
 from iot_storytelling_backend import fcm
+from iot_storytelling_backend import http_server
 
+IPv4 = str(socket.gethostbyname(socket.gethostname()))
 HOST = ''  # Symbolic name, meaning all available interfaces
 PORT = 8888  # Arbitrary non-privileged port
 CHUNK_SIZE = 1024
@@ -10,8 +13,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
 def ping_host_ip():
-    ip_str = str(socket.gethostbyname(socket.gethostname()))
-    fcm.push_event(ip_str, event="host")
+    fcm.push_event(IPv4, event="host")
 
 
 def handle_connection(conn):
@@ -47,8 +49,9 @@ def server_loop():
 
 
 def start():
-    # notify sensor app that server is running
-    ping_host_ip()
+    # start http server
+    t1 = threading.Thread(target=http_server.run())
+    t1.start()
 
     # Bind socket to local host and port
     try:
@@ -60,6 +63,9 @@ def start():
     # Start listening on socket
     s.listen()
     print('SERVER Socket now listening')
+
+    # notify sensor app that server is running
+    ping_host_ip()
 
     # enter the server loop
     server_loop()
