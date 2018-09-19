@@ -1,6 +1,7 @@
 import socket
 import sys
 import threading
+import time
 from iot_storytelling_backend import fcm
 from iot_storytelling_backend import http_server
 
@@ -13,7 +14,9 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
 def ping_host_ip():
-    fcm.push_event(IPv4, event="host")
+    while True:
+        fcm.push_event(IPv4, event="host")
+        time.sleep(5)
 
 
 def handle_connection(conn):
@@ -64,8 +67,9 @@ def start():
     s.listen()
     print('SERVER Socket now listening')
 
-    # notify sensor app that server is running
-    ping_host_ip()
+    # broadcast ip every X seconds
+    t2 = threading.Thread(target=ping_host_ip)
+    t2.start()
 
     # enter the server loop
     server_loop()
