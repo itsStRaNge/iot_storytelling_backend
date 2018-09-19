@@ -30,7 +30,7 @@ def handle_connection(conn):
             break
 
     # TODO: Do Processing of the data
-    print('SERVER %s' % data)
+    print('SERVER received: %s' % data)
 
     # Send action to other devices
     fcm.push_event(str(data))
@@ -50,7 +50,7 @@ def server_loop():
 
 def start():
     # start http server
-    t1 = threading.Thread(target=http_server.run())
+    t1 = threading.Thread(target=http_server.run)
     t1.start()
 
     # Bind socket to local host and port

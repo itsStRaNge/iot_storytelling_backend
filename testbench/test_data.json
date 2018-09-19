@@ -1,17 +1,4 @@
 {
-  "array": [
-    1,
-    2,
-    3
-  ],
-  "boolean": true,
-  "color": "#82b92c",
-  "null": null,
-  "number": 123,
-  "object": {
-    "a": "b",
-    "c": "d",
-    "e": "f"
-  },
-  "string": "Hello World"
+  "audio": "http://10.24.147.239:8080/audio/sound.wav",
+  "image": "http://10.24.147.239:8080/image/image.png"
 }

@@ -1,10 +1,9 @@
 import socket
 import json
-
+from iot_storytelling_backend.server import PORT
 JSON_FILE = 'test_data.json'
 
-TCP_IP = 'localhost' # socket.gethostbyname(socket.gethostname())
-TCP_PORT = 8888
+TCP_IP = 'localhost'  # socket.gethostbyname(socket.gethostname())
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -16,7 +15,7 @@ def send_test_data():
 
 
 def send_msg(msg):
-    s.connect((TCP_IP, TCP_PORT))
+    s.connect((TCP_IP, PORT))
     print("CLIENT sending %s" % msg)
     s.send(msg.encode('utf-8'))
     s.close()

@@ -7,11 +7,7 @@ API_KEY = "AAAAjA9yJPo:APA91bGpa13pfTdiiWS4wEKpH_ougbCbK15oDrbatFhxo3wtiv39fIgN4
 
 push_service = FCMNotification(api_key=API_KEY)
 
+
 def push_event(msg, event="news"):
     result = push_service.notify_topic_subscribers(topic_name=event, message_body=msg, content_available=True)
-    print("FCM %s" % result)
-
-
-def push_data(msg, event="news"):
-    result = push_service.notify_topic_subscribers(topic_name=event, data_message=msg, content_available=True)
-    print("FCM %s" % result)
+    print("FCM pushed: %s" % result)
