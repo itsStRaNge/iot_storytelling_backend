@@ -56,8 +56,8 @@ def start():
     # Bind socket to local host and port
     try:
         s.bind((HOST, PORT))
-    except socket.error as msg:
-        print('SERVER Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
+    except socket.error as e:
+        print('SERVER Bind failed. Error Code : %s' % e)
         sys.exit()
 
     # Start listening on socket
