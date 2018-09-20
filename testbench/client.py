@@ -4,6 +4,7 @@ from iot_storytelling_backend.server import PORT
 JSON_FILE = 'test_data.json'
 
 TCP_IP = 'localhost'  # socket.gethostbyname(socket.gethostname())
+TCP_PORT = 8888
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 

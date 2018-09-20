@@ -2,6 +2,7 @@ import socket
 import sys
 import threading
 import time
+import json
 from iot_storytelling_backend import fcm
 from iot_storytelling_backend import http_server
 
@@ -18,7 +19,6 @@ def ping_host_ip():
         # fcm.push_event(IPv4, event="host")
         time.sleep(5)
 
-
 def handle_connection(conn):
 
     # Receiving data from client
@@ -34,6 +34,18 @@ def handle_connection(conn):
 
     # TODO: Do Processing of the data
     print('SERVER received: %s' % data)
+
+    data_str = data.decode('utf8').replace("'", '"')
+    d = json.loads(data_str)
+
+    #print(d['array'])
+
+    json_pos = d['position']
+
+    json_code = d['qr_code']
+
+    print(json_pos)
+    print(json_code)
 
     # Send action to other devices
     fcm.push_event(str(data))

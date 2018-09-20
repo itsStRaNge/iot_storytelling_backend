@@ -1,4 +1,4 @@
 {
-  "audio": "http://10.24.147.239:8080/audio/sound.wav",
-  "image": "http://10.24.147.239:8080/image/image.png"
+  "position": 1,
+  "qr_code": "code"
 }
