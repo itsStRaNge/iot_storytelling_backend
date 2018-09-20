@@ -48,7 +48,7 @@ def handle_connection(conn):
     print(json_code)
 
     # Send action to other devices
-    fcm.push_event(str(data))
+    # fcm.push_event(str(data))
 
 
 def server_loop():
