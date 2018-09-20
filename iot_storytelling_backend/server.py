@@ -1,5 +1,6 @@
 import socket
 import sys
+import json
 from iot_storytelling_backend import fcm
 
 HOST = ''  # Symbolic name, meaning all available interfaces
@@ -29,6 +30,18 @@ def handle_connection(conn):
 
     # TODO: Do Processing of the data
     print('SERVER %s' % data)
+
+    data_str = data.decode('utf8').replace("'", '"')
+    d = json.loads(data_str)
+
+    #print(d['array'])
+
+    json_pos = d['position']
+
+    json_code = d['qr_code']
+
+    print(json_pos)
+    print(json_code)
 
     # Send action to other devices
     fcm.push_event(str(data))
