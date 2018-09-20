@@ -15,7 +15,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 def ping_host_ip():
     while True:
-        fcm.push_event(IPv4, event="host")
+        # fcm.push_event(IPv4, event="host")
         time.sleep(5)
 
 
