@@ -1,13 +1,13 @@
 from flask import Flask
 from flask import send_file
+from iot_storytelling_backend import config
 
-HOST = '0.0.0.0'  # all interfaces
-PORT = 8080
+
 app = Flask(__name__)
 
 
 def run():
-    app.run(host=HOST, port=PORT)
+    app.run(host=config.HTTP_HOST, port=config.HTTP_PORT)
 
 
 @app.route('/')

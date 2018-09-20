@@ -1,54 +1,37 @@
 import socket
 import sys
 import threading
-import time
 import json
 from iot_storytelling_backend import fcm
 from iot_storytelling_backend import http_server
+from iot_storytelling_backend import config
 
-IPv4 = str(socket.gethostbyname(socket.gethostname()))
-HOST = ''  # Symbolic name, meaning all available interfaces
-PORT = 8888  # Arbitrary non-privileged port
-CHUNK_SIZE = 1024
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-
-def ping_host_ip():
-    while True:
-        # fcm.push_event(IPv4, event="host")
-        time.sleep(5)
 
 def handle_connection(conn):
 
     # Receiving data from client
     data = b''
     while True:
-        chunk = conn.recv(CHUNK_SIZE)
+        chunk = conn.recv(config.TCP_CHUNK_SIZE)
         if chunk:
             data += chunk
-            if len(chunk) < CHUNK_SIZE:
+            if len(chunk) < config.TCP_CHUNK_SIZE:
                 break
         else:
             break
 
-    # TODO: Do Processing of the data
     print('SERVER received: %s' % data)
 
     data_str = data.decode('utf8').replace("'", '"')
     d = json.loads(data_str)
 
-    #print(d['array'])
-
-    json_pos = d['position']
-
-    json_code = d['qr_code']
-
-    print(json_pos)
-    print(json_code)
+    # TODO: Do Processing of the data
 
     # Send action to other devices
-    # fcm.push_event(str(data))
+    fcm.update_actuator("Actuator1", audio="sound.wav", image="image.png")
 
 
 def server_loop():
@@ -70,18 +53,17 @@ def start():
 
     # Bind socket to local host and port
     try:
-        s.bind((HOST, PORT))
+        s.bind((config.TCP_HOST, config.TCP_PORT))
     except socket.error as e:
         print('SERVER Bind failed. Error Code : %s' % e)
         sys.exit()
 
     # Start listening on socket
     s.listen()
-    print('SERVER Socket now listening')
+    print('SERVER started')
 
-    # broadcast ip every X seconds
-    t2 = threading.Thread(target=ping_host_ip)
-    t2.start()
+    # update tcp and http host address for devices
+    fcm.update_host()
 
     # enter the server loop
     server_loop()
