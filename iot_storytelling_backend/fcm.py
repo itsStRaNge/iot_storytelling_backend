@@ -14,7 +14,7 @@ firebase_admin.initialize_app(cred, {
 
 
 def update_data(key, data):
-    data_ref = db.reference(key)
+    data_ref = db.reference('Host').child(key)
     old_data = data_ref.get()
 
     try:
@@ -44,7 +44,7 @@ def update_host():
 
 
 def update_actuator(device, image, audio):
-    ref = db.reference(device)
+    ref = db.reference("Actuator").child(device)
     ref.set({
         'image': image,
         'audio': audio,
