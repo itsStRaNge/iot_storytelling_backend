@@ -1,4 +1,6 @@
 import os
+from os import listdir
+from os.path import isfile, join
 import firebase_admin
 from datetime import datetime
 from iot_storytelling_backend import config
@@ -9,6 +11,27 @@ cred = credentials.Certificate(os.path.dirname(os.path.abspath(__file__)) + '/fi
 firebase_admin.initialize_app(cred, {
     'databaseURL' : 'https://ntnu-iot-storytelling.firebaseio.com/'
 })
+
+
+def update_data(key, data):
+    data_ref = db.reference(key)
+    old_data = data_ref.get()
+
+    try:
+        if old_data != data:
+            print("FCM Update Data for " + key)
+            data_ref.delete()
+            data_ref.set(data)
+    except AttributeError:
+        data_ref.set(data)
+
+
+def update_available_data():
+    audio_files = [f for f in listdir(config.AUDIO_DIR) if isfile(join(config.AUDIO_DIR, f))]
+    update_data("Audio", audio_files)
+
+    image_files = [f for f in listdir(config.IMAGE_DIR) if isfile(join(config.IMAGE_DIR, f))]
+    update_data("Images", image_files)
 
 
 def update_host():
@@ -27,3 +50,7 @@ def update_actuator(device, image, audio):
         'audio': audio,
         'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
+
+
+if __name__ == '__main__':
+    update_available_data()

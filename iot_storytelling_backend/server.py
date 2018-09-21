@@ -65,6 +65,9 @@ def start():
     # update tcp and http host address for devices
     fcm.update_host()
 
+    # update available data for actuators
+    fcm.update_available_data()
+
     # enter the server loop
     server_loop()
 
