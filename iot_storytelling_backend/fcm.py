@@ -1,6 +1,4 @@
 import os
-from os import listdir
-from os.path import isfile, join
 import firebase_admin
 from datetime import datetime
 from iot_storytelling_backend import config
@@ -27,14 +25,9 @@ def update_data(key, data):
 
 
 def update_available_data():
-    audio_files = [f for f in listdir(config.AUDIO_DIR) if isfile(join(config.AUDIO_DIR, f))]
-    update_data("Audio", audio_files)
-
-    image_files = [f for f in listdir(config.IMAGE_DIR) if isfile(join(config.IMAGE_DIR, f))]
-    update_data("Images", image_files)
-
-    text_files = [f for f in listdir(config.TEXT_DIR) if isfile(join(config.TEXT_DIR, f))]
-    update_data("Text", text_files)
+    update_data("Audio", config.audio_files)
+    update_data("Images", config.image_files)
+    update_data("Text", config.text_files)
 
 
 def update_host():

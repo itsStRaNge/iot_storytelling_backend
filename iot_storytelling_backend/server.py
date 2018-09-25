@@ -5,6 +5,7 @@ import json
 from iot_storytelling_backend import fcm
 from iot_storytelling_backend import http_server
 from iot_storytelling_backend import config
+from iot_storytelling_backend import decision
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -29,9 +30,11 @@ def handle_connection(conn):
     d = json.loads(data_str)
 
     # TODO: Do Processing of the data
+    event = decision.create_reaction(d["qr_code"], d["position"])
 
     # Send action to other devices
-    fcm.update_actuator("0", audio="sound.wav", image="image.png", text="first.txt")
+    for key, val in event.items():
+        fcm.update_actuator(key, audio=val['audio'], image=val['image'], text=val['text'])
 
 
 def server_loop():
