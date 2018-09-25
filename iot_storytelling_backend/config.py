@@ -16,3 +16,4 @@ HTTP_PORT = 8080
 # locations of sources
 AUDIO_DIR = os.path.dirname(os.path.abspath(__file__)) + "/audio"
 IMAGE_DIR = os.path.dirname(os.path.abspath(__file__)) + "/image"
+TEXT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/text"

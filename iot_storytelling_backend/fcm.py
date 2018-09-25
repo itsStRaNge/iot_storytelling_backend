@@ -33,6 +33,9 @@ def update_available_data():
     image_files = [f for f in listdir(config.IMAGE_DIR) if isfile(join(config.IMAGE_DIR, f))]
     update_data("Images", image_files)
 
+    text_files = [f for f in listdir(config.TEXT_DIR) if isfile(join(config.TEXT_DIR, f))]
+    update_data("Text", text_files)
+
 
 def update_host():
     host_ref = db.reference('Host')
@@ -43,11 +46,22 @@ def update_host():
     })
 
 
-def update_actuator(device, image, audio):
+def update_actuator(device, image="none.png", audio="none.wav", text="none.txt"):
     ref = db.reference("Actuator").child(device)
     ref.set({
         'image': image,
         'audio': audio,
+        'text': text,
+        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    })
+
+
+def update_sensor(image="none.png", audio="none.wav", text="none.txt"):
+    ref = db.reference("Sensor")
+    ref.set({
+        'image': image,
+        'audio': audio,
+        'text': text,
         'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
 
