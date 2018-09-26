@@ -42,7 +42,8 @@ def update_host():
     host_ref.update({
         'ip': config.IPv4,
         'tcp_port': config.TCP_PORT,
-        'http_port': config.HTTP_PORT
+        'http_port': config.HTTP_PORT,
+        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
 
 
@@ -64,6 +65,17 @@ def update_sensor(image="none.png", audio="none.wav", text="none.txt"):
         'text': text,
         'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
+
+
+def log_action(qr_code, position):
+    ref = db.reference("History")
+    ref.child(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))\
+        .set(
+            {
+                'qr_code': qr_code,
+                'position': position
+            }
+        )
 
 
 if __name__ == '__main__':

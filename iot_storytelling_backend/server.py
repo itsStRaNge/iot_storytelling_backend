@@ -28,6 +28,8 @@ def handle_connection(conn):
     data_str = data.decode('utf8').replace("'", '"')
     d = json.loads(data_str)
 
+    fcm.log_action(d.get('qr_code', 'none'), d['position'])
+
     # TODO: Do Processing of the data
 
     # Send action to other devices
@@ -42,7 +44,7 @@ def server_loop():
             print('SERVER Connected with ' + addr[0] + ':' + str(addr[1]))
             handle_connection(conn)
         except Exception as e:
-            print(e)
+            print("Error handling connection" + str(e))
             break
 
 
