@@ -9,7 +9,7 @@ from firebase_admin import db
 
 cred = credentials.Certificate(os.path.dirname(os.path.abspath(__file__)) + '/firebase_db_cred.json')
 firebase_admin.initialize_app(cred, {
-    'databaseURL' : 'https://ntnu-iot-storytelling.firebaseio.com/'
+    'databaseURL': 'https://ntnu-iot-storytelling.firebaseio.com/'
 })
 
 
