@@ -35,5 +35,15 @@ def send_image(file):
         attachment_filename=file)
 
 
+@app.route('/text/<file>')
+def send_text(file):
+    full_path = 'text/' + file
+    return send_file(
+        full_path,
+        mimetype="text/txt",
+        as_attachment=True,
+        attachment_filename=file)
+
+
 if __name__ == '__main__':
     run()

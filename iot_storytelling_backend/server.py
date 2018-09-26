@@ -31,7 +31,7 @@ def handle_connection(conn):
     # TODO: Do Processing of the data
 
     # Send action to other devices
-    fcm.update_actuator("Actuator1", audio="sound.wav", image="image.png")
+    fcm.update_actuator("0", audio="sound.wav", image="image.png", text="first.txt")
 
 
 def server_loop():
@@ -64,6 +64,9 @@ def start():
 
     # update tcp and http host address for devices
     fcm.update_host()
+
+    # update available data for actuators
+    fcm.update_available_data()
 
     # enter the server loop
     server_loop()
