@@ -20,7 +20,7 @@ def send_audio(file):
     full_path = 'audio/' + file
     return send_file(
         full_path,
-        mimetype="audio/wav",
+        mimetype="audio/mp3",
         as_attachment=True,
         attachment_filename=file)
 

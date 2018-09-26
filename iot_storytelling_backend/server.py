@@ -31,7 +31,7 @@ def handle_connection(conn):
     # TODO: Do Processing of the data
 
     # Send action to other devices
-    fcm.update_actuator("0", audio="sound.wav", image="image.png", text="first.txt")
+    fcm.update_actuator("0", audio="song1-3.mp3", image="picture2-1.png", text="text1.txt")
 
 
 def server_loop():
