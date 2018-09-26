@@ -69,14 +69,20 @@ def update_sensor(image="none.png", audio="none.wav", text="none.txt"):
 
 def log_action(qr_code, position):
     ref = db.reference("History")
-    ref.child(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))\
+    ref.push()\
         .set(
             {
                 'qr_code': qr_code,
-                'position': position
+                'position': position,
+                'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
         )
 
 
+def get_logs(from_last):
+    return db.reference("History").order_by_child("timestamp")
+
+
 if __name__ == '__main__':
-    update_available_data()
+    result = get_logs("2019-09-26 13:00:00")
+    print(result)
