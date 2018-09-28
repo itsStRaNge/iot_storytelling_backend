@@ -13,17 +13,14 @@ firebase_admin.initialize_app(cred, {
 })
 
 
-def update_data(key, data):
-    data_ref = db.reference('Host').child(key)
-    old_data = data_ref.get()
-
-    try:
-        if old_data != data:
-            print("FCM Update Data for " + key)
-            data_ref.delete()
-            data_ref.set(data)
-    except AttributeError:
-        data_ref.set(data)
+def update_host():
+    host_ref = db.reference('Host')
+    host_ref.update({
+        'ip': config.IPv4,
+        'tcp_port': config.TCP_PORT,
+        'http_port': config.HTTP_PORT,
+        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    })
 
 
 def update_available_data():
@@ -37,13 +34,17 @@ def update_available_data():
     update_data("Text", text_files)
 
 
-def update_host():
-    host_ref = db.reference('Host')
-    host_ref.update({
-        'ip': config.IPv4,
-        'tcp_port': config.TCP_PORT,
-        'http_port': config.HTTP_PORT
-    })
+def update_data(key, data):
+    data_ref = db.reference('Host').child(key)
+    old_data = data_ref.get()
+
+    try:
+        if old_data != data:
+            print("FCM Update Data for " + key)
+            data_ref.delete()
+            data_ref.set(data)
+    except AttributeError:
+        data_ref.set(data)
 
 
 def update_actuator(device, image="none.png", audio="none.wav", text="none.txt"):
