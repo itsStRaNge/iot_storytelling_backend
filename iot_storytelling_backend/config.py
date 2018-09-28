@@ -5,7 +5,7 @@ import os
 IPv4 = str(socket.gethostbyname(socket.gethostname()))
 
 # TCP Server
-TCP_HOST = ''  # Symbolic name, meaning all available interfaces
+TCP_HOST = '0.0.0.0'  # Symbolic name, meaning all available interfaces
 TCP_PORT = 8888  # Arbitrary non-privileged port
 TCP_CHUNK_SIZE = 1024
 

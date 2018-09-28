@@ -46,7 +46,6 @@ def server_loop():
             handle_connection(conn)
         except Exception as e:
             print(e)
-            break
 
 
 def start():
