@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join
 import firebase_admin
 from datetime import datetime
-from iot_storytelling_backend import config
+import config
 from firebase_admin import credentials
 from firebase_admin import db
 

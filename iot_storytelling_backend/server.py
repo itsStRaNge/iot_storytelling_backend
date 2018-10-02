@@ -3,10 +3,10 @@ import sys
 import threading
 import json
 from datetime import datetime
-from iot_storytelling_backend import fcm
-from iot_storytelling_backend import http_server
-from iot_storytelling_backend import config
-from iot_storytelling_backend import decision
+import fcm
+import http_server
+import config
+import decision
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -46,6 +46,8 @@ def server_loop():
             conn, addr = s.accept()
             log('SERVER Connected with ' + addr[0] + ':' + str(addr[1]))
             handle_connection(conn)
+        except KeyboardInterrupt:
+            break
         except Exception as e:
             log("Connection Error: %s" % e)
 

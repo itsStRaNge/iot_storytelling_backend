@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import send_file
-from iot_storytelling_backend import config
+import config
 
 
 app = Flask(__name__)
