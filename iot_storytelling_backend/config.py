@@ -1,9 +1,10 @@
 import socket
 import os
 import sys
-from netifaces import interfaces, ifaddresses, AF_INET
+
 
 def ip4_addresses():
+    from netifaces import interfaces, ifaddresses, AF_INET
     return ifaddresses('wlan0')[AF_INET][0]['addr']
 
 IPv4 = None
