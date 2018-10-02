@@ -3,7 +3,7 @@ import os
 import sys
 
 # Productive mode will use the Productive node at firebase db otherwise Develop node is used
-PRODUCTIVE = False
+PRODUCTIVE = True
 
 # TCP Server
 TCP_HOST = '0.0.0.0'  # Symbolic name, meaning all available interfaces
