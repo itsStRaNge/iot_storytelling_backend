@@ -14,6 +14,7 @@ firebase_admin.initialize_app(cred, {
 
 
 def update_host():
+    # update data about host at database
     host_ref = db.reference('Host')
     host_ref.update({
         'ip': config.IPv4,
@@ -24,17 +25,21 @@ def update_host():
 
 
 def update_available_data():
+    # get all audio files
     audio_files = [f for f in listdir(config.AUDIO_DIR) if isfile(join(config.AUDIO_DIR, f))]
     update_data("Audio", audio_files)
 
+    # get all image files
     image_files = [f for f in listdir(config.IMAGE_DIR) if isfile(join(config.IMAGE_DIR, f))]
     update_data("Images", image_files)
 
+    # get all text files
     text_files = [f for f in listdir(config.TEXT_DIR) if isfile(join(config.TEXT_DIR, f))]
     update_data("Text", text_files)
 
 
 def update_data(key, data):
+    # if data has changed, then push new data to database
     data_ref = db.reference('Host').child(key)
     old_data = data_ref.get()
 
@@ -48,6 +53,7 @@ def update_data(key, data):
 
 
 def update_actuator(device, image="none.png", audio="none.wav", text="none.txt"):
+    # update state of actuator app in database
     ref = db.reference("Actuator").child(device)
     ref.set({
         'image': image,
@@ -58,6 +64,7 @@ def update_actuator(device, image="none.png", audio="none.wav", text="none.txt")
 
 
 def update_sensor(image="none.png", audio="none.wav", text="none.txt"):
+    # update state of sensor app in database
     ref = db.reference("Sensor")
     ref.set({
         'image': image,

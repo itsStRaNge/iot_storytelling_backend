@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 
 def run():
+    # start http server
     app.run(host=config.HTTP_HOST, port=config.HTTP_PORT)
 
 

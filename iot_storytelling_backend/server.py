@@ -2,16 +2,20 @@ import socket
 import sys
 import threading
 import json
+from datetime import datetime
 from iot_storytelling_backend import fcm
 from iot_storytelling_backend import http_server
 from iot_storytelling_backend import config
-from iot_storytelling_backend import desicion_function as df
+from iot_storytelling_backend import decision
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
-def handle_connection(conn):
+def log(msg):
+    print(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " - " + msg)
 
+
+def handle_connection(conn):
     # Receiving data from client
     data = b''
     while True:
@@ -23,15 +27,13 @@ def handle_connection(conn):
         else:
             break
 
-    print('SERVER received: %s' % data)
-
+    log('SERVER received: %s' % data)
     data_str = data.decode('utf8').replace("'", '"')
     d = json.loads(data_str)
 
     # call decision function
-    song, picture = df.desfu(d['position'], d['qr_code'])
-
-    print("Decision %s %s" % (song, picture))
+    song, picture = decision.make(d['position'], d['qr_code'])
+    log("SERVER Decision %s %s" % (song, picture))
 
     # Send action to other devices
     fcm.update_actuator("0", audio=song, image=picture, text="none.txt")
@@ -42,10 +44,10 @@ def server_loop():
         try:
             # wait to accept a connection - blocking call
             conn, addr = s.accept()
-            print('SERVER Connected with ' + addr[0] + ':' + str(addr[1]))
+            log('SERVER Connected with ' + addr[0] + ':' + str(addr[1]))
             handle_connection(conn)
         except Exception as e:
-            print(e)
+            log("Connection Error: %s" % e)
 
 
 def start():
@@ -57,19 +59,20 @@ def start():
     try:
         s.bind((config.TCP_HOST, config.TCP_PORT))
     except socket.error as e:
-        print('SERVER Bind failed. Error Code : %s' % e)
+        log('SERVER Bind failed. Error Code : %s' % e)
         sys.exit()
 
     # Start listening on socket
     s.listen()
-    print('SERVER started')
 
     # update tcp and http host address for devices
+    log("SERVER Update Database")
     fcm.update_host()
 
     # update available data for actuators
     fcm.update_available_data()
 
+    log('SERVER is running')
     # enter the server loop
     server_loop()
 
