@@ -2,17 +2,8 @@ import socket
 import os
 import sys
 
-
-def ip4_addresses():
-    from netifaces import interfaces, ifaddresses, AF_INET
-    return ifaddresses('wlan0')[AF_INET][0]['addr']
-
-IPv4 = None
-if sys.platform == "linux":
-    IPv4 = ip4_addresses()
-else:
-    IPv4 = str(socket.gethostbyname(socket.gethostname()))
-print("IPv4 - " + IPv4)
+# Productive mode will use the Productive node at firebase db otherwise Develop node is used
+PRODUCTIVE = False
 
 # TCP Server
 TCP_HOST = '0.0.0.0'  # Symbolic name, meaning all available interfaces
@@ -27,3 +18,13 @@ HTTP_PORT = 8080
 AUDIO_DIR = os.path.dirname(os.path.abspath(__file__)) + "/audio"
 IMAGE_DIR = os.path.dirname(os.path.abspath(__file__)) + "/image"
 TEXT_DIR = os.path.dirname(os.path.abspath(__file__)) + "/text"
+
+# Get IPv4
+# approach differs from operating system
+IPv4 = None
+if sys.platform == "linux":
+    from netifaces import ifaddresses, AF_INET
+    IPv4 = ifaddresses('wlan0')[AF_INET][0]['addr']
+else:
+    IPv4 = str(socket.gethostbyname(socket.gethostname()))
+print("IPv4 - " + IPv4)

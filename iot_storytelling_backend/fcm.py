@@ -1,21 +1,26 @@
 import os
 from os import listdir
 from os.path import isfile, join
-import firebase_admin
 from datetime import datetime
-import config
+import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+import config
 
 cred = credentials.Certificate(os.path.dirname(os.path.abspath(__file__)) + '/firebase_db_cred.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://ntnu-iot-storytelling.firebaseio.com/'
 })
 
+if config.PRODUCTIVE:
+    fdb = db.reference("Productive")
+else:
+    fdb = db.reference("Develop")
+
 
 def update_host():
     # update data about host at database
-    host_ref = db.reference('Host')
+    host_ref = fdb.child('Host')
     host_ref.update({
         'ip': config.IPv4,
         'tcp_port': config.TCP_PORT,
@@ -40,7 +45,7 @@ def update_available_data():
 
 def update_data(key, data):
     # if data has changed, then push new data to database
-    data_ref = db.reference('Host').child(key)
+    data_ref = fdb.child('Host').child(key)
     old_data = data_ref.get()
 
     try:
@@ -54,7 +59,7 @@ def update_data(key, data):
 
 def update_actuator(device, image="none.png", audio="none.wav", text="none.txt"):
     # update state of actuator app in database
-    ref = db.reference("Actuator").child(device)
+    ref = fdb.child("Actuator").child(device)
     ref.set({
         'image': image,
         'audio': audio,
@@ -65,7 +70,7 @@ def update_actuator(device, image="none.png", audio="none.wav", text="none.txt")
 
 def update_sensor(image="none.png", audio="none.wav", text="none.txt"):
     # update state of sensor app in database
-    ref = db.reference("Sensor")
+    ref = fdb.child("Sensor")
     ref.set({
         'image': image,
         'audio': audio,
