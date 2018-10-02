@@ -1,8 +1,17 @@
 import socket
 import os
+import sys
+from netifaces import interfaces, ifaddresses, AF_INET
 
+def ip4_addresses():
+    return ifaddresses('wlan0')[AF_INET][0]['addr']
 
-IPv4 = str(socket.gethostbyname(socket.gethostname()))
+IPv4 = None
+if sys.platform == "linux":
+    IPv4 = ip4_addresses()
+else:
+    IPv4 = str(socket.gethostbyname(socket.gethostname()))
+print("IPv4 - " + IPv4)
 
 # TCP Server
 TCP_HOST = '0.0.0.0'  # Symbolic name, meaning all available interfaces
