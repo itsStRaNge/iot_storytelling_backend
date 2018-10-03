@@ -37,6 +37,8 @@ more easy. To get an overview about the structure of the database please visit o
 and read the firebase [docs](https://firebase.google.com/docs/database/). The database is divided into a `Productive`
 and `Develop` node to make the productive running system independent of future developments. You can set the mode at `config.py`.
 
+![General System Overview](System%20Overview.jpg)
+
 Installation and Setup
 --------------------------
 ### General
