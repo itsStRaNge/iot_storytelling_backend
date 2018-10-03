@@ -8,7 +8,7 @@ The project was supervised by Andrew Perkis and Asim Hameed at the NTNU and impl
 Project Description
 --------------------------
 The project contains two layers, an interactive and technological one. The backend implements most parts of the technological
-layer. If you want to read more about the interactive part of the project, please visit (LINK HERE).
+layer. If you want to read more about the interactive part of the project, please visit [frontend](https://github.com/itsStRaNge/iot_storytelling_frontend.git).
 
 The technological layer is based on IoT concepts and connects all devices over a cloud service.
 The cloud service is divided into a logical and storage unit. The logical unit creates, based on the user interaction, 
