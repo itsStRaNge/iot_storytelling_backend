@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ntnu-iot-storytelling",
+  "private_key_id": "b74afe8769db4d82c8d79ae9d6d17ae64e282ab5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDqoSEL7Pd3PuTi\nR7NrYREG9I9+UycnHwXZV7PKczBt9Xc6NaMNvm6RMWXLwkRpQR3ShQ7J7cB9HZIc\nq4lJMh2rpTIuzXHkzk/rqzS+VHojkPrPCKnMzGseUhgzKNq4Bt1HoXrO4HV2rtCm\nFASJl/eiHSZB6EstfVy0XONO7Cp1LsPS4EYwEOl0WeLKlSEwUTFdCjAr1upD6L0Z\nSJrFva4RQSJArSCzsBewgQPHa8+FdtVlM9aloUYdIM6skOTkGS/a/dDkB9X3zhnj\nF21VKtw0+fR0u96YXxAZJC/vliD802TRzsRbuiPTJaQE7+OFhhYksNx6mPaVU4KL\n7RKoLHXHAgMBAAECggEAAVs0Fd26onmpGLZsZEBX46/nN8Y4RuLIMF+a6PPYgaeL\nwbjh++gwEG52KwLborYfJi03DtYX05anq7sWxzxfF95pF1nVq4prw4N7rGalnBiw\nR8vCMNkKUiRhrRiyhvd3MPz5zkIAO9LlNDM6bCcw5cLVtUd9Tm0tQNemnWQCbNH5\nDJgHzA40r6HyMSqsrR58dwWjjI/21CGvFJybeHcB10ck9JdOAdIDPqQCQ40nCM/T\nHaqoB2QLmhZV4DB7GPUS/LQ8ddyGIAW8IQxzcPxouFJdql7YjuoUL64UlYydu/xy\n0CtwHNnbBhI3uuB6NgLpeR70d2e06EHlV4OTTf3v2QKBgQD63HawVpIRQ0x7jyVS\nglCFTDaVAZUwPeW63avpWOAnl27FCQzGds+jvarZCApwqfXGUFlQgnAR6jbFErYD\nt+4+Kf9yFNAA7S6OMJ1LV2du/bMVA/ZAmgXmn4hF8fhTm+fKVQUFmM0uvprDcSj+\nt2nzU4YdZrdbZfPqVixh5nymPwKBgQDvb4tybUJtFJTJQO7X8SGAlhswQlmQgyGc\nyCfYAeKcsiUZe3obFRszMoZERem0BvXmxF3wiaHV10dRNvQG1OD8bZrPXrb/Ies9\nrkF9CT1f4fXnKiW8VuSGjgocBZcUCfY2nttZbXar7Cv0cr/21Twh5NAF5tOKxA+Q\nDJZaU5meeQKBgQCraHCA1OZBfWaJFqo90mUKb6Tr84TozaJnKIgKjXu8EbDSWPit\nswj1rOdMHD5l9PvGYahlZnsFArAhwEM2Dztupmuwm5/0whuJdJZFoJdAM4Fl3qso\nQRW/G0qV4Fv5ZRHgIm+n/1xTkFFXMb79LH3skSmWdVTb0rHzcKYqzr5lKQKBgQC0\nPD43K6HmJKj/ef6Q1PXIKrZatIdhLiS+NTkw8/JWzA77SKSZAGFSP8UsXYhXuSmf\nxc+FAsWtB/mqW/iDr/mQax0u3nhYQ3smGic37R2jMJ//nA194dbyprdbcqXQMtOB\nOEGb5rd/IS/ROhPgxZEXXnttBd3VxlKEt8TyR54K2QKBgAx1sBjEC4gyqzA+KpF4\n9jNi+ROU0CtsiIWo/qwQtYm2kaaSIE5N5UE3JybTy7AqdDccfb8M8iDmCVsKyopH\nC7HtG/zXE0zDdSsB9S6PZAHtogyKZKzbRd7DsXuyhUJW8qhQSxGPEaqynK2PA8d3\nJtbxFLryjLzV4944+x/lpmgp\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-n6zea@ntnu-iot-storytelling.iam.gserviceaccount.com",
+  "client_id": "112612868166450328709",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-n6zea%40ntnu-iot-storytelling.iam.gserviceaccount.com"
+}

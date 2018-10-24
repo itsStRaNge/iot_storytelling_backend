@@ -1,6 +1,6 @@
 past_qrcode = ""
 
-def desfu(pos,qrcode):
+def make(pos,qrcode):
 
     if qrcode == "kode1":
         past_qrcode = 'kode1'

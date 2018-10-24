@@ -1,13 +1,14 @@
 from flask import Flask
 from flask import send_file
+import config
 
-HOST = '0.0.0.0'  # all interfaces
-PORT = 8080
+
 app = Flask(__name__)
 
 
 def run():
-    app.run(host=HOST, port=PORT)
+    # start http server
+    app.run(host=config.HTTP_HOST, port=config.HTTP_PORT)
 
 
 @app.route('/')
@@ -20,7 +21,7 @@ def send_audio(file):
     full_path = 'audio/' + file
     return send_file(
         full_path,
-        mimetype="audio/wav",
+        mimetype="audio/mp3",
         as_attachment=True,
         attachment_filename=file)
 
@@ -31,6 +32,16 @@ def send_image(file):
     return send_file(
         full_path,
         mimetype="image/png",
+        as_attachment=True,
+        attachment_filename=file)
+
+
+@app.route('/text/<file>')
+def send_text(file):
+    full_path = 'text/' + file
+    return send_file(
+        full_path,
+        mimetype="text/txt",
         as_attachment=True,
         attachment_filename=file)
 

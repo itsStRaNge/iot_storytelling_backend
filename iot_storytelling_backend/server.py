@@ -1,54 +1,42 @@
 import socket
 import sys
 import threading
-import time
 import json
-from iot_storytelling_backend import fcm
-from iot_storytelling_backend import http_server
-
-IPv4 = str(socket.gethostbyname(socket.gethostname()))
-HOST = ''  # Symbolic name, meaning all available interfaces
-PORT = 8888  # Arbitrary non-privileged port
-CHUNK_SIZE = 1024
+from datetime import datetime
+import fcm
+import http_server
+import config
+import decision
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 
-def ping_host_ip():
-    while True:
-        # fcm.push_event(IPv4, event="host")
-        time.sleep(5)
+def log(msg):
+    print(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " - " + msg)
+    sys.stdout.flush()
 
 def handle_connection(conn):
-
     # Receiving data from client
     data = b''
     while True:
-        chunk = conn.recv(CHUNK_SIZE)
+        chunk = conn.recv(config.TCP_CHUNK_SIZE)
         if chunk:
             data += chunk
-            if len(chunk) < CHUNK_SIZE:
+            if len(chunk) < config.TCP_CHUNK_SIZE:
                 break
         else:
             break
 
-    # TODO: Do Processing of the data
-    print('SERVER received: %s' % data)
-
+    log('SERVER received: %s' % data)
     data_str = data.decode('utf8').replace("'", '"')
     d = json.loads(data_str)
 
-    #print(d['array'])
-
-    json_pos = d['position']
-
-    json_code = d['qr_code']
-
-    print(json_pos)
-    print(json_code)
+    # call decision function
+    song, picture = decision.make(d['position'], d['qr_code'])
+    log("SERVER Decision %s %s" % (song, picture))
 
     # Send action to other devices
-    # fcm.push_event(str(data))
+    fcm.update_actuator("0", audio=song, image=picture, text="none.txt")
 
 
 def server_loop():
@@ -56,11 +44,12 @@ def server_loop():
         try:
             # wait to accept a connection - blocking call
             conn, addr = s.accept()
-            print('SERVER Connected with ' + addr[0] + ':' + str(addr[1]))
+            log('SERVER Connected with ' + addr[0] + ':' + str(addr[1]))
             handle_connection(conn)
-        except Exception as e:
-            print(e)
+        except KeyboardInterrupt:
             break
+        except Exception as e:
+            log("Connection Error: %s" % e)
 
 
 def start():
@@ -70,19 +59,22 @@ def start():
 
     # Bind socket to local host and port
     try:
-        s.bind((HOST, PORT))
+        s.bind((config.TCP_HOST, config.TCP_PORT))
     except socket.error as e:
-        print('SERVER Bind failed. Error Code : %s' % e)
+        log('SERVER Bind failed. Error Code : %s' % e)
         sys.exit()
 
     # Start listening on socket
     s.listen()
-    print('SERVER Socket now listening')
 
-    # broadcast ip every X seconds
-    t2 = threading.Thread(target=ping_host_ip)
-    t2.start()
+    # update tcp and http host address for devices
+    log("SERVER Update Database")
+    fcm.update_host()
 
+    # update available data for actuators
+    fcm.update_available_data()
+
+    log('SERVER is running')
     # enter the server loop
     server_loop()
 
