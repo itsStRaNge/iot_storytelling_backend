@@ -15,6 +15,7 @@ def log(msg):
     print(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " - " + msg)
     sys.stdout.flush()
 
+
 def handle_connection(conn):
     # Receiving data from client
     data = b''

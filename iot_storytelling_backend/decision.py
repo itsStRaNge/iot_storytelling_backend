@@ -1,3 +1,5 @@
+
+
 def make(pos, qr_code):
     song = "none.mp3"
     picture = "none.mp3"

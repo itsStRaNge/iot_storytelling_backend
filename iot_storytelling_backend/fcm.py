@@ -32,15 +32,15 @@ def update_host():
 def update_available_data():
     # get all audio files
     audio_files = [f for f in listdir(config.AUDIO_DIR) if isfile(join(config.AUDIO_DIR, f))]
-    update_data("Audio", audio_files)
+    update_data("audio", audio_files)
 
     # get all image files
     image_files = [f for f in listdir(config.IMAGE_DIR) if isfile(join(config.IMAGE_DIR, f))]
-    update_data("Images", image_files)
+    update_data("images", image_files)
 
     # get all text files
     text_files = [f for f in listdir(config.TEXT_DIR) if isfile(join(config.TEXT_DIR, f))]
-    update_data("Text", text_files)
+    update_data("text", text_files)
 
 
 def update_data(key, data):
