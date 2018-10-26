@@ -34,7 +34,6 @@ def handle_connection(conn):
     # TODO adjust decision fct call ok
     # call decision function
     decision.make(d['position'], d['qr_code'])
-    log("SERVER Decision %s %s" % (song, picture))
 
     # Send action to other devices
     # fcm.update_actuator("0", audio=song, image=picture, text="none.txt")
@@ -68,12 +67,13 @@ def start():
     # Start listening on socket
     s.listen()
 
+    # update available data for actuators
+    fcm.update_available_data()
+
     # update tcp and http host address for devices
     log("SERVER Update Database")
     fcm.update_host()
 
-    # update available data for actuators
-    fcm.update_available_data()
 
     log('SERVER is running')
     # enter the server loop
