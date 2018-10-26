@@ -57,26 +57,37 @@ def update_data(key, data):
         data_ref.set(data)
 
 
-def update_actuator(device, image="none.png", audio="none.wav", text="none.txt"):
+def update_actuator(device, image="", audio="", text=""):
     # update state of actuator app in database
     ref = fdb.child("Actuator").child(device)
-    ref.set({
-        'image': image,
-        'audio': audio,
-        'text': text,
-        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    })
+    pkg = {}
+    if image != "":
+        pkg['image'] = image
+    if audio != "":
+        pkg['audio'] = audio
+    if text != "":
+        pkg["text"] = text
+
+    pkg['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    ref.set(pkg)
 
 
-def update_sensor(image="none.png", audio="none.wav", text="none.txt"):
+# TODO add bird visibility ok
+def update_sensor(audio="", bird="", image="", text=""):
     # update state of sensor app in database
     ref = fdb.child("Sensor")
-    ref.set({
-        'image': image,
-        'audio': audio,
-        'text': text,
-        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    })
+    pkg = {}
+    if audio != "":
+        pkg['audio'] = audio
+    if bird != "":
+        pkg['bird'] = bird
+    if image != "":
+        pkg['image'] = image
+    if text != "":
+        pkg["text"] = text
+
+    pkg['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    ref.set(pkg)
 
 
 if __name__ == '__main__':

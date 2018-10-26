@@ -31,12 +31,13 @@ def handle_connection(conn):
     data_str = data.decode('utf8').replace("'", '"')
     d = json.loads(data_str)
 
+    # TODO adjust decision fct call ok
     # call decision function
-    song, picture = decision.make(d['position'], d['qr_code'])
+    decision.make(d['position'], d['qr_code'])
     log("SERVER Decision %s %s" % (song, picture))
 
     # Send action to other devices
-    fcm.update_actuator("0", audio=song, image=picture, text="none.txt")
+    # fcm.update_actuator("0", audio=song, image=picture, text="none.txt")
 
 
 def server_loop():

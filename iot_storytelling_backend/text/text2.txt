@@ -1,1 +1,0 @@
-Try to place the bird in one of the four positions and go scan a QR code.

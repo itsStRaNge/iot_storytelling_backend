@@ -1,1 +1,0 @@
-Hello, this bird needs help to move around. Try to grab it and move it somewhere.
