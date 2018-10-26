@@ -3,7 +3,7 @@ import os
 import sys
 
 # Productive mode will use the Productive node at firebase db otherwise Develop node is used
-PRODUCTIVE = True
+PRODUCTIVE = False
 
 # TCP Server
 TCP_HOST = '0.0.0.0'  # Symbolic name, meaning all available interfaces
@@ -26,6 +26,5 @@ if sys.platform == "linux":
     from netifaces import ifaddresses, AF_INET
     IPv4 = ifaddresses('wlan0')[AF_INET][0]['addr']
 else:
-#    IPv4 = str(socket.gethostbyname(socket.gethostname()))
-    IPv4 = "localhost"
+    IPv4 = str(socket.gethostbyname(socket.gethostname()))
 print("IPv4 - " + IPv4)

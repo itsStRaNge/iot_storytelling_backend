@@ -1,4 +1,4 @@
-from iot_storytelling_backend import fcm
+import fcm
 
 previous_state = "state_1"
 current_state = "state_1"
@@ -127,6 +127,8 @@ def process_state_2(qrcode, pos):
         elif pos == 3:
             fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
             return "state_1"
+
+
 
 def process_state_3(qrcode, pos):
     if pos == 1:
