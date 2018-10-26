@@ -173,7 +173,7 @@ def process_state_4(qrcode, pos):
 
     if qrcode == "code4":
         if pos == 1:
-            fcm.update_actuator("3", audio="moon-1", image="moon_single.gif", text="moon-1.txt")
+            fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
             return "state_1"
         elif pos == 2:
             fcm.update_actuator("3", audio="guitar-2", image="moon_couple_gif", text="moon-4.txt")
