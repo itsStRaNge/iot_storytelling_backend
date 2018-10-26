@@ -8,7 +8,12 @@ previous_qrcode = "code1"
 
 previous_pos = 3
 
+def init_all():
+    # update available data for actuators
+    fcm.update_available_data()
 
+    # update tcp and http host address for devices
+    fcm.update_host()
 
 
 # TODO notify devices within decision function

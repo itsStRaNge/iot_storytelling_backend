@@ -3,7 +3,6 @@ import sys
 import threading
 import json
 from datetime import datetime
-import fcm
 import http_server
 import config
 import decision
@@ -67,13 +66,7 @@ def start():
     # Start listening on socket
     s.listen()
 
-    # update available data for actuators
-    fcm.update_available_data()
-
-    # update tcp and http host address for devices
-    log("SERVER Update Database")
-    fcm.update_host()
-
+    decision.init_all()
 
     log('SERVER is running')
     # enter the server loop
