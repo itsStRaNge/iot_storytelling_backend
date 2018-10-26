@@ -43,10 +43,10 @@ def process_state_1(qrcode, pos):
             fcm.update_actuator("0", audio="lighthouse-1.mp3", image="lighthouse_single.gif", text="lighthouse-1.txt")
             return "state_2"
         elif pos == 2:
-            fcm.update_actuator("0", audio="lighthouse-1.mp3", image="lighthouse_single.gif", text="lighthouse-2.txt")
+            fcm.update_actuator("0", audio="lighthouse-2.mp3", image="lighthouse_single.gif", text="lighthouse-2.txt")
             return "state_1"
         elif pos == 3:
-            fcm.update_actuator("0", audio="lighthouse-1.mp3", image="lighthouse_single.gif", text="lighthouse-3.txt")
+            fcm.update_actuator("0", audio="lighthouse-3.mp3", image="lighthouse_single.gif", text="lighthouse-3.txt")
             return "state_1"
 
     if qrcode == "code2":
@@ -76,16 +76,16 @@ def process_state_1(qrcode, pos):
             fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
             return "state_1"
         elif pos == 2:
-            fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
+            fcm.update_actuator("3", audio="moon-2.mp3", image="moon_single.gif", text="moon-2.txt")
             return "state_4"
         elif pos == 3:
-            fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
+            fcm.update_actuator("3", audio="moon-3.mp3", image="moon_single.gif", text="moon-3.txt")
             return "state_1"
 
 def process_state_2(qrcode, pos):
     if qrcode == "code1":
         if pos == 1:
-            fcm.update_actuator("0", audio="piano2", image="lighthouse_couple", text="lighthouse-4.txt")
+            fcm.update_actuator("0", audio="piano2.mp3", image="lighthouse_couple", text="lighthouse-4.txt")
             fcm.update_sensor(bird="invisible", text="return_piano.txt")
             return "state_3"
         elif pos == 2:
@@ -122,10 +122,10 @@ def process_state_2(qrcode, pos):
             fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
             return "state_1"
         elif pos == 2:
-            fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
+            fcm.update_actuator("3", audio="moon-2.mp3", image="moon_single.gif", text="moon-2.txt")
             return "state_4"
         elif pos == 3:
-            fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
+            fcm.update_actuator("3", audio="moon-3.mp3", image="moon_single.gif", text="moon-3.txt")
             return "state_1"
 
 def process_state_3(qrcode, pos):
@@ -133,12 +133,13 @@ def process_state_3(qrcode, pos):
         fcm.update_actuator("0", image="lighthouse_single.gif", text="lighthouse-5.txt")
         fcm.update_sensor(bird="visible", text="start.txt")
         return "state_2"
+    else:
+        return "state_3"
 
 def process_state_4(qrcode, pos):
     if qrcode == "code1":
         if pos == 1:
             fcm.update_actuator("0", audio="lighthouse-1.mp3", image="lighthouse_single.gif", text="lighthouse-1.txt")
-            fcm.update_sensor(audio="", image="", text="")
             return "state_2"
         elif pos == 2:
             fcm.update_actuator("0", audio="lighthouse-2.mp3", image="lighthouse_single.gif", text="lighthouse-2.txt")
@@ -171,14 +172,14 @@ def process_state_4(qrcode, pos):
 
     if qrcode == "code4":
         if pos == 1:
-            fcm.update_actuator("3", audio="moon-1", image="moon_single.gif", text="moon-1.txt")
+            fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
             return "state_1"
         elif pos == 2:
-            fcm.update_actuator("3", audio="guitar-2", image="moon_couple_gif", text="moon-4.txt")
+            fcm.update_actuator("3", audio="guitar-2.mp3", image="moon_couple_gif", text="moon-4.txt")
             fcm.update_sensor(bird="invisible", text="return_guitar.txt")
             return "state_5"
         elif pos == 3:
-            fcm.update_actuator("3", audio="moon-3", image="moon_single.gif", text="moon-3.txt")
+            fcm.update_actuator("3", audio="moon-3.mp3", image="moon_single.gif", text="moon-3.txt")
             return "state_1"
 
 def process_state_5(qrcode, pos):
@@ -186,7 +187,8 @@ def process_state_5(qrcode, pos):
         fcm.update_actuator("3", image="moon_single.gif", text="moon-5.txt")
         fcm.update_sensor(bird="visible", text="start.txt")
         return "state_4"
-
+    else:
+        return "state_5"
 if __name__ == "__main__":
     make(2, "code1")
     make(1, "code1")
