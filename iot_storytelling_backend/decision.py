@@ -4,9 +4,9 @@ previous_state = "state_1"
 current_state = "state_1"
 next_state = ""
 
-previous_qrcode = "code1"
+previous_qrcode = "code0"
 
-previous_pos = 3
+previous_pos = 0
 
 def init_all():
     # update available data for actuators
@@ -15,11 +15,13 @@ def init_all():
     # update tcp and http host address for devices
     fcm.update_host()
 
+    # TODO add black image to src files and set all states of actuator devices to black image in firebase
+
 
 # TODO notify devices within decision function
 # fcm.update_actuator("0", audio=song, image=picture, text="none.txt")
 # fcm.update_sensor(image="none.png", audio="none.wav", text="none.txt")
-# TODO dont return values in decision function ok
+
 
 def make(pos, qrcode):
     global previous_state
@@ -28,6 +30,8 @@ def make(pos, qrcode):
     global previous_qrcode
     global previous_pos
 
+    print("previous qr code before: %s" % previous_qrcode)
+    print("current qr code before: %s" % qrcode)
     print("current state before: %s" % current_state)
 
     if current_state == "state_1":
@@ -51,6 +55,8 @@ def make(pos, qrcode):
     previous_qrcode = qrcode
     previous_pos = pos
 
+    print("previous qr code after: %s" % previous_qrcode)
+    print("current qr code after: %s" % qrcode)
     print("current state after: %s" % current_state)
 
 
@@ -66,9 +72,7 @@ def process_state_1(qrcode, pos):
             return "state_1"
 
     elif qrcode == "code1":
-        if pos == previous_pos:
-            return "state_1"
-        elif pos == 0:
+        if pos == 0:
             fcm.update_actuator("0", audio="lighthouse-1.mp3", image="lighthouse_single.gif", text="lighthouse-1.txt")
             return "state_1"
         elif pos == 1:
@@ -81,9 +85,7 @@ def process_state_1(qrcode, pos):
             return "state_2"
 
     elif qrcode == "code2":
-        if pos == previous_pos:
-            return "state_1"
-        elif pos == 0:
+        if pos == 0:
             fcm.update_actuator("1", image="blank.gif", text="blank-1.txt")
             return "state_1"
         elif pos == 1:
@@ -96,9 +98,7 @@ def process_state_1(qrcode, pos):
             return "state_1"
 
     elif qrcode == "code3":
-        if pos == previous_pos:
-            return "state_1"
-        elif pos == 0:
+        if pos == 0:
             fcm.update_actuator("2", image="tree.gif", text="tree-1.txt")
             return "state_1"
         elif pos == 1:
@@ -111,9 +111,7 @@ def process_state_1(qrcode, pos):
             return "state_1"
 
     elif qrcode == "code4":
-        if pos == previous_pos:
-            return "state_1"
-        elif pos == 0:
+        if pos == 0:
             fcm.update_actuator("3", audio="moon-1.mp3", image="moon_single.gif", text="moon-1.txt")
             return "state_1"
         elif pos == 1:
@@ -259,8 +257,6 @@ def process_state_4(qrcode, pos):
             fcm.update_sensor(audio="piano1.mp3")
             return "state_1"
 
-
-
 def process_state_5(qrcode, pos):
     if pos == 1:
         fcm.update_actuator("3", image="moon_single.gif", text="moon-5.txt")
@@ -272,8 +268,9 @@ def process_state_5(qrcode, pos):
 
 
 if __name__ == "__main__":
-    make(2, "code1")
-    make(1, "code1")
-    make(1, "code1")
+    make(2, "code0")
+    make(1, "code0")
+    make(2, "code0")
+    make(0, "code0")
     make(1, "code1")
 
