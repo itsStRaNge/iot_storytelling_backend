@@ -30,6 +30,7 @@ def make(pos, qrcode):
     global previous_qrcode
     global previous_pos
 
+
     print("previous qr code before: %s" % previous_qrcode)
     print("current qr code before: %s" % qrcode)
     print("current state before: %s" % current_state)
