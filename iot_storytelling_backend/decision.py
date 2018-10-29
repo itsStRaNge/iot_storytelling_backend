@@ -4,8 +4,9 @@ previous_state = "state_1"
 current_state = "state_1"
 next_state = ""
 
-previous_qrcode = "code0"
 
+previous_qrcode = "code0"
+print("previous qr code before: %s" % previous_qrcode)
 previous_pos = 0
 
 def init_all():
@@ -14,7 +15,6 @@ def init_all():
 
     # update tcp and http host address for devices
     fcm.update_host()
-
     # TODO add black image to src files and set all states of actuator devices to black image in firebase
 
 
