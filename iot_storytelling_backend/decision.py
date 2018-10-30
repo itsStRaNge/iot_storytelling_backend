@@ -78,7 +78,7 @@ def process_state_1(qrcode, pos):
             return "state_1"
         elif pos == 1:
             fcm.update_actuator("0", audio="lighthouse_2.mp3", image="lighthouse_single.gif", text="lighthouse_2.txt")
-            fcm.update_sensor(audio="guitar1.mp3")
+            fcm.update_sensor(audio="guitar_1.mp3")
             return "state_1"
         elif pos == 2:
             fcm.update_actuator("0", audio="lighthouse_3.mp3", image="lighthouse_single.gif", text="lighthouse_3.txt")
@@ -91,7 +91,7 @@ def process_state_1(qrcode, pos):
             return "state_1"
         elif pos == 1:
             fcm.update_actuator("1", image="blank.gif", text="blank_2.txt")
-            fcm.update_sensor(audio="guitar1.mp3")
+            fcm.update_sensor(audio="guitar_1.mp3")
             return "state_1"
         elif pos == 2:
             fcm.update_actuator("1", image="blank.gif", text="blank_3.txt")
