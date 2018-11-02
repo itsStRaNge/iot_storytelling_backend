@@ -15,11 +15,13 @@ def init_all():
 
     # update tcp and http host address for devices
     fcm.update_host()
+
+    fcm.update_actuator("0", image="background_black.png")
     # TODO add black image to src files and set all states of actuator devices to black image in firebase
 
 
 # TODO notify devices within decision function
-# fcm.update_actuator("0", audio=song, image=picture, text="none.txt")
+# fcm.update_actuator("0", audio="song.mp3", image="picture.png", text="none.txt")
 # fcm.update_sensor(image="none.png", audio="none.wav", text="none.txt")
 
 
@@ -29,7 +31,6 @@ def make(pos, qrcode):
     global next_state
     global previous_qrcode
     global previous_pos
-
 
     print("previous qr code before: %s" % previous_qrcode)
     print("current qr code before: %s" % qrcode)
@@ -75,53 +76,89 @@ def process_state_1(qrcode, pos):
     elif qrcode == "code1":
         if pos == 0:
             fcm.update_actuator("0", audio="lighthouse_1.mp3", image="lighthouse_single.gif", text="lighthouse_1.txt")
+            fcm.update_actuator("1", image="background_black.png")
+            fcm.update_actuator("2", image="background_black.png")
+            fcm.update_actuator("3", image="background_black.png")
             return "state_1"
         elif pos == 1:
             fcm.update_actuator("0", audio="lighthouse_2.mp3", image="lighthouse_single.gif", text="lighthouse_2.txt")
             fcm.update_sensor(audio="guitar_1.mp3")
+            fcm.update_actuator("1", image="background_black.png")
+            fcm.update_actuator("2", image="background_black.png")
+            fcm.update_actuator("3", image="background_black.png")
             return "state_1"
         elif pos == 2:
             fcm.update_actuator("0", audio="lighthouse_3.mp3", image="lighthouse_single.gif", text="lighthouse_3.txt")
             fcm.update_sensor(audio="piano_1.mp3")
+            fcm.update_actuator("1", image="background_black.png")
+            fcm.update_actuator("2", image="background_black.png")
+            fcm.update_actuator("3", image="background_black.png")
             return "state_2"
 
     elif qrcode == "code2":
         if pos == 0:
             fcm.update_actuator("1", image="blank.gif", text="blank_1.txt")
+            fcm.update_actuator("0", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("2", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("3", image="background_black.png", audio="none.wav")
             return "state_1"
         elif pos == 1:
             fcm.update_actuator("1", image="blank.gif", text="blank_2.txt")
             fcm.update_sensor(audio="guitar_1.mp3")
+            fcm.update_actuator("0", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("2", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("3", image="background_black.png", audio="none.wav")
             return "state_1"
         elif pos == 2:
             fcm.update_actuator("1", image="blank.gif", text="blank_3.txt")
             fcm.update_sensor(audio="piano_1.mp3")
+            fcm.update_actuator("0", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("2", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("3", image="background_black.png", audio="none.wav")
             return "state_1"
 
     elif qrcode == "code3":
         if pos == 0:
             fcm.update_actuator("2", image="tree.gif", text="tree_1.txt")
+            fcm.update_actuator("0", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("1", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("3", image="background_black.png", audio="none.wav")
             return "state_1"
         elif pos == 1:
             fcm.update_actuator("2", image="tree.gif", text="tree_2.txt")
             fcm.update_sensor(audio="guitar_1.mp3")
+            fcm.update_actuator("0", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("1", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("3", image="background_black.png", audio="none.wav")
             return "state_1"
         elif pos == 2:
             fcm.update_actuator("2", image="tree.gif", text="tree_3.txt")
             fcm.update_sensor(audio="piano_1.mp3")
+            fcm.update_actuator("0", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("1", image="background_black.png", audio="none.wav")
+            fcm.update_actuator("3", image="background_black.png", audio="none.wav")
             return "state_1"
 
     elif qrcode == "code4":
         if pos == 0:
             fcm.update_actuator("3", audio="moon_1.mp3", image="moon_single.gif", text="moon_1.txt")
             return "state_1"
+            fcm.update_actuator("0", image="background_black.png")
+            fcm.update_actuator("1", image="background_black.png")
+            fcm.update_actuator("2", image="background_black.png")
         elif pos == 1:
             fcm.update_actuator("3", audio="moon_2.mp3", image="moon_single.gif", text="moon_2.txt")
             fcm.update_sensor(audio="guitar_1.mp3")
+            fcm.update_actuator("0", image="background_black.png")
+            fcm.update_actuator("1", image="background_black.png")
+            fcm.update_actuator("2", image="background_black.png")
             return "state_4"
         elif pos == 2:
             fcm.update_actuator("3", audio="moon_3.mp3", image="moon_single.gif", text="moon_3.txt")
             fcm.update_sensor(audio="piano_1.mp3")
+            fcm.update_actuator("0", image="background_black.png")
+            fcm.update_actuator("1", image="background_black.png")
+            fcm.update_actuator("2", image="background_black.png")
             return "state_1"
 
 def process_state_2(qrcode, pos):
@@ -132,7 +169,7 @@ def process_state_2(qrcode, pos):
             fcm.update_sensor(audio="guitar_1.mp3")
             return "state_2"
         elif pos == 2:
-            fcm.update_actuator("0", audio="piano_2.mp3", image="lighthouse_couple", text="lighthouse_4.txt")
+            fcm.update_actuator("0", audio="piano_2.mp3", image="lighthouse_couple.gif", text="lighthouse_4.txt")
             fcm.update_sensor(bird="invisible", text="return_piano.txt")
             return "state_3"
 
