@@ -107,7 +107,7 @@ def process_state_1(qrcode, pos):
             fcm.update_actuator("3", image="background_black.gif", audio="none.wav")
             return "state_1"
         elif pos == 1:
-            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_1.txt")
+            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_2.txt")
             fcm.update_sensor(audio="guitar_2.mp3")
             fcm.update_actuator("0", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
@@ -115,7 +115,7 @@ def process_state_1(qrcode, pos):
 
             return "state_1"
         elif pos == 2:
-            fcm.update_actuator("1", image="blank.boy_bird_2_tree", text="boy_bird_2_1.txt")
+            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_3.txt")
             fcm.update_sensor(audio="piano_2.mp3")
             fcm.update_actuator("0", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
@@ -138,7 +138,7 @@ def process_state_1(qrcode, pos):
             fcm.update_actuator("3", image="background_black.gif", audio="none.wav")
             return "state_1"
         elif pos == 2:
-            fcm.update_actuator("0", audio="girl_bird_1_crash.mp3", image="girl_bird_1_mountain.gif", text="girl_bird_1_3.txt")
+            fcm.update_actuator("0", image="girl_bird_1_lighthouse.gif", text="girl_bird_1_3.txt", audio="crash.mp3")
             fcm.update_sensor(audio="piano_2.mp3")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("1", image="background_black.gif", audio="none.wav")
@@ -194,13 +194,13 @@ def process_state_2(qrcode, pos):
 
     if qrcode == "code2":
         if pos == 0:
-            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_1.txt")
+            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_1.txt", audio="none.wav")
             fcm.update_actuator("0", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("3", image="background_black.gif", audio="none.wav")
             return "state_1"
         elif pos == 1:
-            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_1.txt")
+            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_2.txt")
             fcm.update_sensor(audio="guitar_2.mp3")
             fcm.update_actuator("0", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
@@ -208,7 +208,7 @@ def process_state_2(qrcode, pos):
 
             return "state_1"
         elif pos == 2:
-            fcm.update_actuator("1", image="blank.boy_bird_2_tree", text="boy_bird_2_1.txt")
+            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_3.txt")
             fcm.update_sensor(audio="piano_2.mp3")
             fcm.update_actuator("0", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
@@ -295,13 +295,13 @@ def process_state_4(qrcode, pos):
 
     if qrcode == "code2":
         if pos == 0:
-            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_1.txt")
+            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_1.txt", audio="none.wav")
             fcm.update_actuator("0", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("3", image="background_black.gif", audio="none.wav")
             return "state_1"
         elif pos == 1:
-            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_1.txt")
+            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_2.txt")
             fcm.update_sensor(audio="guitar_2.mp3")
             fcm.update_actuator("0", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
@@ -309,7 +309,7 @@ def process_state_4(qrcode, pos):
 
             return "state_1"
         elif pos == 2:
-            fcm.update_actuator("1", image="blank.boy_bird_2_tree", text="boy_bird_2_1.txt")
+            fcm.update_actuator("1", image="boy_bird_2_tree.gif", text="boy_bird_2_3.txt")
             fcm.update_sensor(audio="piano_2.mp3")
             fcm.update_actuator("0", image="background_black.gif", audio="none.wav")
             fcm.update_actuator("2", image="background_black.gif", audio="none.wav")
