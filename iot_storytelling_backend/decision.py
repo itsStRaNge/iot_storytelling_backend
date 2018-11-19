@@ -67,10 +67,10 @@ def process_state_1(qrcode, pos):
             return "state_1"
         elif pos == 1:
             #audio bird image text
-            fcm.update_sensor(audio="guitar_1.mp3", bird="visible", image="background.gif", text="start.txt")
+            fcm.update_sensor(audio="guitar_1.mp3", bird="visible", image="background.png", text="start.txt")
             return "state_1"
         elif pos == 2:
-            fcm.update_sensor(audio="piano_1.mp3", bird="visible", image="background.gif", text="start.txt")
+            fcm.update_sensor(audio="piano_1.mp3", bird="visible", image="background.png", text="start.txt")
             return "state_1"
 
     elif qrcode == "code1":
